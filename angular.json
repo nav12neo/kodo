@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "kodo"
+    }
+  },
+  "defaultProject": "kodo",
+  "cli": {
+    "analytics": "4f14681f-a7b2-4401-a051-eb57befa545d"
+  }
 }
