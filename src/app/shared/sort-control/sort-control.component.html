@@ -1,4 +1,4 @@
-<form [formGroup]="form">
+<form [formGroup]="form" class="sort-container">
     <select formControlName="field">
         <option *ngFor="let field of fields" [ngValue]="field">
         {{ field.label }}

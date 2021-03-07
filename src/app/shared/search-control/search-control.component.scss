@@ -2,3 +2,13 @@
     padding: 10px;
     font-size: 1.1em;
 }
+
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    .search {
+        width:93%;
+        margin-bottom:10px;
+    }
+}

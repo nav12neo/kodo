@@ -8,11 +8,8 @@
         </div>
     </div>
     <div class="list-container">
-            <div *ngFor="let item of candidatesData; index as i;" class="item">
-                <img [src]="item.image" [alt]="item.name" [title]="item.name"/>
-                <h2> {{item.name}}</h2>
-                <p> {{item.description}}</p>
-            </div>
-        
+        <div *ngFor="let item of candidatesData; index as i;" class="item">
+            <app-candidate-card [candidate]="item"></app-candidate-card>
         </div>
+    </div>
 </div>

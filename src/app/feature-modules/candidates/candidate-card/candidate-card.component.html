@@ -1,3 +1,5 @@
-<p>
-    Candidate card
-</p>
+<div class="candidate-card">
+    <img [src]="candidate.image" [alt]="candidate.name" [title]="candidate.name"/>
+    <h2> {{candidate.name}}</h2>
+    <p> {{candidate.description}}</p>
+</div>
