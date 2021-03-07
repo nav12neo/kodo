@@ -1,13 +1,17 @@
 <div class="list-page">
     <div class="header">
         <div class="item">
-            <app-search-control [value] = "search" (searchValueChange) = "searchValueChange($event)"></app-search-control>
+            <app-search-control [value] = "queryObj.search" (searchValueChange) = "searchValueChange($event)"></app-search-control>
+            <span class="total-records">{{totalRecords}} records found.</span>
         </div>
         <div class="item">
-            <app-sort-control (sortValueChange) = "sortValueChange($event)"></app-sort-control>
+            <app-sort-control [value] = "queryObj.sort" (sortValueChange) = "sortValueChange($event)"></app-sort-control>
         </div>
     </div>
-    <div class="list-container">
+    <div *ngIf="dataLoading" class="loading-container">
+        <div> Loading is in progress...</div>
+    </div>
+    <div class="list-container" *ngIf="!dataLoading">
         <div *ngFor="let item of candidatesData; index as i;" class="item">
             <app-candidate-card [candidate]="item"></app-candidate-card>
         </div>

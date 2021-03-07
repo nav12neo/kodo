@@ -9,24 +9,43 @@ import { CandidatesService } from '../../services/candidates.service';
 export class ListCandidatesComponent implements OnInit {
   
   candidatesData = null;
-  search: string;
-
+  totalRecords: number = 0;
+  dataLoading: boolean = false;
+  isError: boolean = false;
+  queryObj : any = {
+    search: "customer",
+    sort : "name:desc"
+  };
   constructor( private candidateSerice: CandidatesService) { 
 
   }
 
   ngOnInit(): void {
-    this.candidateSerice.getJSON().subscribe( data => {
+    this.getDataFromAPI();  
+  }
+
+  getDataFromAPI () : void {
+    this.dataLoading = true;
+    this.totalRecords = 0;
+    this.candidateSerice.getJSON(this.queryObj).subscribe( data => {
       this.candidatesData = data;
-    })
+      this.totalRecords = data.length;
+      this.dataLoading = false;
+    },
+    error => {
+      this.dataLoading = false;
+      this.isError = true;
+    });
   }
 
   sortValueChange(data) : void {
-    console.log(data);
+    this.queryObj.sort = data.name; 
+    this.getDataFromAPI();
   }
 
   searchValueChange(data): void {
-    console.log(data);
+    this.queryObj.search = data;
+    this.getDataFromAPI();
   }
 
 }

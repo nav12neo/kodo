@@ -5,6 +5,13 @@
         justify-content: space-between;
         align-items: stretch;
         padding:20px 10px;
+        .item {
+            display: flex;
+            .total-records {
+                line-height: 38px;
+                margin-left: 15px;
+            }
+        }
     }
     .list-container {
         display: grid;
@@ -12,7 +19,7 @@
         grid-gap: 15px;
         .item {
             border: 1px solid #DDD;
-            border-radius:4px;
+            border-radius:8px;
             padding: 8px;
             &:hover {
                 background : #EEEEEE;
@@ -21,20 +28,13 @@
             }
         }
     }
-}
-
-
-/* Portrait */
-@media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (orientation: portrait) 
-  and (-webkit-min-device-pixel-ratio: 1) {
-    .list-page {
-        .list-container {
-            grid-template-columns: auto auto;
-        }
-    }  
+    .loading-container {
+        text-align: center;
+        font-size: 1.2em;
+        display: flex;
+        justify-content: center;
+        padding: 4em;
+    }
 }
 
 /* Portrait */
@@ -57,6 +57,14 @@
     .list-page {
         .header {
             flex-direction: column;
+            .item {
+                display:block;
+                .total-records {
+                    text-align:center;
+                    margin-left:0;
+                    display:block;
+                }
+            }
         }
         .list-container {
             grid-template-columns: auto;

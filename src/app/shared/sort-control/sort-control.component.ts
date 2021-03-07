@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 
 @Component({
@@ -7,9 +7,11 @@ import {FormControl, FormGroup} from '@angular/forms';
   styleUrls: ['./sort-control.component.scss']
 })
 export class SortControlComponent implements OnInit {
+  
   form : FormGroup;
   fields : any [];
-
+  defaultValue:any;
+  @Input() value : string;
   @Output() sortValueChange = new EventEmitter<any>();
 
   constructor() { }
@@ -18,11 +20,15 @@ export class SortControlComponent implements OnInit {
     this.fields = [
       {label: 'Name ascending', name: 'name:asc'},
       {label: 'Name desending', name: 'name:desc'},
-      {label: 'Description ascending', name: 'description:asc'},
-      {label: 'Description desending', name: 'description:desc'}
+      {label: 'Date Last Edited ascending', name: 'dateLastEdited:asc'},
+      {label: 'Date Last Edited desending', name: 'dateLastEdited:desc'}
     ];
+    this.defaultValue = this.fields.filter( (item) => {
+        return item.name === this.value;
+    });
+    console.log(this.defaultValue);
     this.form = new FormGroup({
-      field: new FormControl(this.fields[0]),
+      field: new FormControl(this.defaultValue[0]),
     });
 
     this.form.get('field').valueChanges.subscribe(value => this.sortValueChange.emit(value));
